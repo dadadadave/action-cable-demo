@@ -162,6 +162,9 @@ GEM
       railties (>= 3.2)
       tilt
     regexp_parser (2.1.1)
+    responders (3.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -247,6 +250,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4)
   react-rails
+  responders
   rspec-rails
   sass-rails (>= 6)
   selenium-webdriver
