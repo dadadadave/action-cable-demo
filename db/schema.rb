@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_30_021040) do
+ActiveRecord::Schema.define(version: 2021_07_30_055847) do
 
   create_table "chats", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_chats_on_name", unique: true
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.integer "amount", null: false
+    t.string "donor", null: false
+    t.integer "chat_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chat_id"], name: "index_donations_on_chat_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -28,5 +37,6 @@ ActiveRecord::Schema.define(version: 2021_07_30_021040) do
     t.index ["chat_id"], name: "index_messages_on_chat_id"
   end
 
+  add_foreign_key "donations", "chats"
   add_foreign_key "messages", "chats"
 end
