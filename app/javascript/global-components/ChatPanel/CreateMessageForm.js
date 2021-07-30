@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 
+import ConnectionContext from "../ChatApp/ConnectionContext";
 import StyledCreateMessageForm from "./CreateMessageForm.styled";
 
-const CreateMessageForm = ({ chat }) => {
+const CreateMessageForm = () => {
   const [message, setMessage] = useState("");
+  const { chat } = useContext(ConnectionContext);
 
   const updateMessage = (event) => {
     setMessage(event.target.value);
@@ -27,10 +28,6 @@ const CreateMessageForm = ({ chat }) => {
       <button onClick={submitMessage}>Post</button>
     </StyledCreateMessageForm>
   );
-};
-
-CreateMessageForm.propTypes = {
-  chat: PropTypes.string.isRequired
 };
 
 export default CreateMessageForm;

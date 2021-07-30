@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 
-import consumer from "../../channels/consumer";
+import ConnectionContext from "../ChatApp/ConnectionContext";
 
 const ChatListSubscriber = ({ children, onReceive }) => {
+  const { connection } = useContext(ConnectionContext);
+
   useEffect(() => {
-    consumer.subscriptions.create({ channel: "ChatListChannel" }, {
+    if (!connection) return;
+
+    connection.subscriptions.create({ channel: "ChatListChannel" }, {
       received(data) { onReceive(data); }
     });    
-  }, []);
+  }, [connection]);
 
   return children;
 }

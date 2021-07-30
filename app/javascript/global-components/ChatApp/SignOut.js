@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Cookies from "js-cookie";
 
+import ConnectionContext from "./ConnectionContext";
 import StyledSignOut from "./SignOut.styled";
 
-const SignOut = ({ user, onSignOut }) => {
+const SignOut = ({ onSignOut }) => {
+  const { user } = useContext(ConnectionContext);
+
   const handleSignout = () => {
     Cookies.remove('_chatAppUser');
     onSignOut();
@@ -18,7 +21,6 @@ const SignOut = ({ user, onSignOut }) => {
 };
 
 SignOut.propTypes = {
-  user: PropTypes.string.isRequired,
   onSignOut: PropTypes.func.isRequired
 };
 
