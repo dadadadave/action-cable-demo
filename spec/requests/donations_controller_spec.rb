@@ -8,12 +8,9 @@ RSpec.describe DonationsController, type: :request do
     let(:amount) { 23 }
     let(:donor) { 'Generous Diplodocus' }
 
-    it 'creates a new donation' do
-      expect { action }.to change(Donation, :count)
-      donation = Donation.last
-      expect(donation.chat).to eq(chat)
-      expect(donation.amount).to eq(amount)
-      expect(donation.donor).to eq(donor)
+    it 'queues up a job to create a new donation' do
+      action
+      assert_enqueued_with(job: DonationJob, args: [chat.name, '23', 'Generous Diplodocus'])
     end
 
     it 'responds with success' do

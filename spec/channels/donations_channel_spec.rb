@@ -11,7 +11,7 @@ RSpec.describe DonationsChannel, type: :channel do
 
     expect(subscription).to be_confirmed
 
-    expect(subscription).to have_stream_from("donations:#{chat.name}")
+    expect(subscription).to have_stream_from(described_class.broadcasting_for(chat))
   end
 
   it 'transmits the current data' do

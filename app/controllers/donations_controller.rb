@@ -2,15 +2,12 @@ class DonationsController < ApplicationController
   respond_to :json
 
   def create
-    chat = Chat.find_by!(name: params[:chat_name])
-    chat.donations.create(donation_params)
+    DonationJob.perform_later(
+      params[:chat_name],
+      params[:donation][:amount],
+      params[:donation][:donor]
+    )
 
     head :ok
-  end
-
-  private
-
-  def donation_params
-    params.require(:donation).permit(:amount, :donor)
   end
 end

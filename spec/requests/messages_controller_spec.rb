@@ -16,6 +16,13 @@ RSpec.describe MessagesController, type: :request do
       expect(message.author).to eq(author)
     end
 
+    it 'broadcasts to Action Cable' do
+      message = create(:message)
+      allow(Chat).to receive(:find_by!).with(name: chat.name).and_return(chat)
+      allow(chat.messages).to receive(:create).and_return(message)
+      expect { action }.to have_broadcasted_to(ChatChannel.broadcasting_for(chat)).with('message' => message.as_json)
+    end
+
     it 'responds with success' do
       action
       expect(response).to be_successful
