@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   resources :chats, only: %w[index create show], param: :name do
     resources :messages, only: %w[create]
+    resources :donations, only: %w[create]
   end
 end

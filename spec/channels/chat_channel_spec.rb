@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ChatChannel, type: :channel do
-  before { stub_connection random_id: 'some-id' }
+  before { stub_connection user: 'someone' }
 
   let(:chat) { create(:chat) }
 

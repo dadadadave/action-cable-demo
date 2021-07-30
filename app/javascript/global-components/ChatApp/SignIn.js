@@ -21,7 +21,7 @@ const SignIn = ({ onSignIn }) => {
   return (
     <StyledSignIn>
       <h3>who are you?</h3>
-      <input type="text" value={user} onChange={updateUser}></input>
+      <input type="text" value={user} onChange={updateUser} />
       <button onClick={submitUser}>Sign In</button>
     </StyledSignIn>
   );

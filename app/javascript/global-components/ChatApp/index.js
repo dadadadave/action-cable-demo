@@ -5,6 +5,7 @@ import { createConsumer } from "@rails/actioncable"
 import StyledChatApp from "./ChatApp.styled"
 import ChatList from "../ChatList";
 import ChatPanel from "../ChatPanel";
+import DonationForm from "../DonationForm";
 import SignIn from "./SignIn";
 import SignOut from "./SignOut";
 import ConnectionContext from "./ConnectionContext";
@@ -39,6 +40,7 @@ const ChatApp = () => {
 
           <ChatList selectChat={chat => setChat(chat)}/>
           <ChatPanel/>
+          {chat && <DonationForm/>}
         </ConnectionContext.Provider>
       ) : (
         <SignIn onSignIn={user => setUser(user)} />

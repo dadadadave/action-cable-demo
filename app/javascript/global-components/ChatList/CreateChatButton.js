@@ -19,7 +19,7 @@ const CreateChatButton = () => {
 
   return (
     <StyledCreateChatButton>
-      <input type="text" value={chat} onChange={updateChat}></input>
+      <input type="text" value={chat} onChange={updateChat} />
       <button onClick={submitChat}>Create</button>
     </StyledCreateChatButton>
   );
