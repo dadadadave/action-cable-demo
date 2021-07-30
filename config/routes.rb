@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'chats#index'
+  root 'homes#show'
 
   resources :chats, only: %w[index create]
 end

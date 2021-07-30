@@ -1,8 +1,14 @@
 class ChatsController < ApplicationController
-  respond_to :json, only: %i[create]
+  respond_to :json
+
+  def index
+    render json: { chats: Chat.order(created_at: :asc).pluck(:name) }
+  end
 
   def create
-    Chat.create(chat_params)
+    chat = Chat.create(chat_params)
+
+    ActionCable.server.broadcast('chat_list', { chat: chat.name }) if chat.valid?
 
     head :ok
   end
