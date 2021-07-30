@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import StyledCreateChatButton from "./CreateChatButton.styled"
+
 const CreateChatButton = () => {
   const [chat, setChat] = useState("");
 
@@ -16,10 +18,10 @@ const CreateChatButton = () => {
   }
 
   return (
-    <div>
+    <StyledCreateChatButton>
       <input type="text" value={chat} onChange={updateChat}></input>
       <button onClick={submitChat}>Create</button>
-    </div>
+    </StyledCreateChatButton>
   );
 };
 
