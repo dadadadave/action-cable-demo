@@ -13,6 +13,12 @@ class ChatsController < ApplicationController
     head :ok
   end
 
+  def show
+    chat = Chat.find_by!(name: params[:name])
+
+    render json: { messages: chat.latest_messages, more: chat.more_messages? }
+  end
+
   private
 
   def chat_params

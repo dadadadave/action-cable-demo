@@ -49,5 +49,21 @@ RSpec.describe ChatsController, type: :request do
         expect(response).to be_successful
       end
     end
+
+    describe 'GET #show' do
+      subject(:action) { get chat_path(chat.name, format: :json) }
+
+      let(:chat) { create(:chat) }
+      let!(:message1) { create(:message, chat: chat, body: "hey there", author: "laura") }
+      let!(:message2) { create(:message, chat: chat, body: "hey there", author: "laura") }
+
+      it 'returns the chat data' do
+        action
+        expect(JSON.parse(response.body)).to eq(
+          'messages' => [message1.as_json, message2.as_json],
+          'more' => false
+        )
+      end
+    end
   end
 end

@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 import StyledListedChat from "./ListedChat.styled";
 
-const ListedChat = ({ chat }) => {
+const ListedChat = ({ chat, selectChat }) => {
   return (
-    <StyledListedChat>
+    <StyledListedChat onClick={() => selectChat(chat)}>
       {chat}
     </StyledListedChat> 
   );
