@@ -6,8 +6,4 @@ class Chat < ApplicationRecord
   def latest_messages
     messages.order(created_at: :desc).limit(3).reverse
   end
-
-  def more_messages?
-    messages.count > 3
-  end
 end

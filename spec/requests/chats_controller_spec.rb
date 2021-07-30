@@ -59,10 +59,7 @@ RSpec.describe ChatsController, type: :request do
 
       it 'returns the chat data' do
         action
-        expect(JSON.parse(response.body)).to eq(
-          'messages' => [message1.as_json, message2.as_json],
-          'more' => false
-        )
+        expect(JSON.parse(response.body)).to eq('messages' => [message1.as_json, message2.as_json])
       end
     end
   end

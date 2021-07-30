@@ -18,20 +18,4 @@ RSpec.describe Chat, type: :model do
       expect(chat.latest_messages).to eq([message2, message3, message4])
     end
   end
-
-  describe '#more_messages?' do
-    subject(:more_messages) { chat.more_messages? }
-
-    context 'when the chat has at most 3 messages' do
-      before { create_list(:message, 3, chat: chat) }
-
-      it { is_expected.to be_falsey }
-    end
-
-    context 'when the chat has more than 3 messages' do
-      before { create_list(:message, 4, chat: chat) }
-
-      it { is_expected.to be_truthy }
-    end
-  end
 end

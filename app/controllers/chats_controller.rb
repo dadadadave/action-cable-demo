@@ -16,7 +16,7 @@ class ChatsController < ApplicationController
   def show
     chat = Chat.find_by!(name: params[:name])
 
-    render json: { messages: chat.latest_messages, more: chat.more_messages? }
+    render json: { messages: chat.latest_messages }
   end
 
   private

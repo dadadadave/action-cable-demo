@@ -8,15 +8,11 @@ import CreateMessageForm from "./CreateMessageForm";
 
 const ChatPanel = ({ chat }) => {
   const [messages, setMessages] = useState([]);
-  const [more, setMore] = useState(false);
 
   useEffect(() => {
     if (!chat) return;
 
-    axios.get(`/chats/${chat}`).then(response => {
-      setMessages(response.data.messages);
-      setMore(response.data.more);
-    });
+    axios.get(`/chats/${chat}`).then(response => setMessages(response.data.messages));
   }, [chat]);
 
   return (
@@ -26,8 +22,6 @@ const ChatPanel = ({ chat }) => {
     >
       <StyledChatPanel>
         <div className="chat-name">{ chat || "<- pick one" }</div>
-
-        {more && <div className="message">...</div>}
 
         {messages.map((message, index) => (
           <div className="message" key={message.id}>
