@@ -12,7 +12,9 @@ const DonationsSubscriber = ({ children, onReceive }) => {
 
     setSubscription(
       connection.subscriptions.create({ channel: "DonationsChannel", chat: chat }, {
-        received(data) { onReceive(data); }
+        received(data) {
+          onReceive(data);
+        }
       })
     );
 

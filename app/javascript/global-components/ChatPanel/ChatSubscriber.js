@@ -12,7 +12,9 @@ const ChatSubscriber = ({ children, onReceive }) => {
 
     setSubscription(
       connection.subscriptions.create({ channel: "ChatChannel", chat: chat }, {
-        received(data) { onReceive(data); }
+        received(data) {
+          onReceive(data);
+        }
       })
     );
 
@@ -20,7 +22,7 @@ const ChatSubscriber = ({ children, onReceive }) => {
       subscription.unsubscribe();
       return null;
     });
-  }, [connection, chat])
+  }, [connection, chat]);
 
   return children;
 };

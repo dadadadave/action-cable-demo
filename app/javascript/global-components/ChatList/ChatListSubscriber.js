@@ -10,7 +10,9 @@ const ChatListSubscriber = ({ children, onReceive }) => {
     if (!connection) return;
 
     connection.subscriptions.create({ channel: "ChatListChannel" }, {
-      received(data) { onReceive(data); }
+      received(data) {
+        onReceive(data);
+      }
     });    
   }, [connection]);
 

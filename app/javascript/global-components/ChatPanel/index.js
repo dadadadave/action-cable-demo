@@ -4,6 +4,7 @@ import axios from "axios";
 import ConnectionContext from "../ChatApp/ConnectionContext";
 import ChatSubscriber from "./ChatSubscriber";
 import StyledChatPanel from "./ChatPanel.styled";
+import PresentUsers from "./PresentUsers";
 import CreateMessageForm from "./CreateMessageForm";
 
 const ChatPanel = () => {
@@ -25,7 +26,9 @@ const ChatPanel = () => {
   return (
     <ChatSubscriber onReceive={data => setMessages(messages => [...messages, data.message])}>
       <StyledChatPanel>
-        <div className="chat-name">chat</div>
+        <div className="chat-name">{chat}</div>
+
+        <PresentUsers />
 
         {messages.map((message, index) => (
           <div className="message" key={message.id}>
