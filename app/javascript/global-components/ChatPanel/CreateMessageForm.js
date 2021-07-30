@@ -6,7 +6,7 @@ import StyledCreateMessageForm from "./CreateMessageForm.styled";
 
 const CreateMessageForm = () => {
   const [message, setMessage] = useState("");
-  const { chat } = useContext(ConnectionContext);
+  const { user, chat } = useContext(ConnectionContext);
 
   const updateMessage = (event) => {
     setMessage(event.target.value);
@@ -18,7 +18,7 @@ const CreateMessageForm = () => {
     setMessage("");
     axios.post(`/chats/${chat}/messages`, {
       body: message,
-      author: "anonymous"
+      author: user
     });
   }
 
