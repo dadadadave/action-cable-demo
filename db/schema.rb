@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_29_223921) do
+ActiveRecord::Schema.define(version: 2021_07_30_021040) do
 
   create_table "chats", force: :cascade do |t|
     t.string "name", null: false
@@ -19,4 +19,14 @@ ActiveRecord::Schema.define(version: 2021_07_29_223921) do
     t.index ["name"], name: "index_chats_on_name", unique: true
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "body", null: false
+    t.string "author", null: false
+    t.integer "chat_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+  end
+
+  add_foreign_key "messages", "chats"
 end
