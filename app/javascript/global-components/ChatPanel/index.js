@@ -15,13 +15,19 @@ const ChatPanel = ({ chat }) => {
     axios.get(`/chats/${chat}`).then(response => setMessages(response.data.messages));
   }, [chat]);
 
+  if (!chat) return (
+    <StyledChatPanel>
+      <div className="chat-name">&lt;- pick one</div>
+    </StyledChatPanel>
+  )
+
   return (
     <ChatSubscriber
       chat={chat}
       onReceive={data => setMessages(messages => [...messages, data.message])}
     >
       <StyledChatPanel>
-        <div className="chat-name">{ chat || "<- pick one" }</div>
+        <div className="chat-name">chat</div>
 
         {messages.map((message, index) => (
           <div className="message" key={message.id}>

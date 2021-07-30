@@ -1,15 +1,15 @@
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
-    identified_by :random_id
+    identified_by :user
 
     def connect
-      self.random_id = generate_random_id
+      self.user = user_from_cookie
     end
 
     private
 
-    def generate_random_id
-      SecureRandom.uuid
+    def user_from_cookie
+      cookies[:_chatAppUser] || reject_unauthorized_connection
     end
   end
 end
